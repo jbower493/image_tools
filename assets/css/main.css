@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input,
+button {
+    padding: 5px 10px;
+}
+
+.formField {
+    margin-bottom: 15px;
+}
+
+.formField label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formField input {
+    width: 100%;
+}
+
+.formField button {
+    width: 100%;
+}
+
+.memeTextContainer--hidden {
+    display: none;
+}
+
+.authForm {
+    width: 300px;
+    margin: 50px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.authForm__error {
+    padding: 6px 10px;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+.authForm__container {
+    padding: 20px;
+}
+
+.imageForm {
+    width: 300px;
+    padding: 20px;
+    margin: 50px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.process {
+    width: fit-content;
+    padding: 50px;
+    background: url("/assets/images/blue_bg_image.jpg") no-repeat center;
+    background-size: cover;
+}
+
+/* .process img {
+    width: 400px;
+} */
