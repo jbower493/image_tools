@@ -12,24 +12,6 @@ function processFile($sourceFilePath, $transformationType, $textLineOne = '', $t
     $img->resizeImage(400, 0, Imagick::FILTER_LANCZOS, 1);
 
     switch ($transformationType) {
-            // case 'removeBg':
-            //     /* The target pixel to paint */
-            //     $x = 1;
-            //     $y = 1;
-
-            //     /* Get the color we are painting */
-            //     $targetColor = $img->getImagePixelColor($x, $y);
-
-            //     $alpha = 0.0;
-            //     $fuzz = 0.9;
-
-            //     $img->transparentPaintImage($targetColor, $alpha, $fuzz, false);
-
-            //     // Not required, but helps tidy up left over pixels
-            //     $img->despeckleimage();
-
-            //     break;
-
         case 'removeBg':
             /* The target pixel to paint */
             $x = 1;
@@ -38,13 +20,28 @@ function processFile($sourceFilePath, $transformationType, $textLineOne = '', $t
             /* Get the color we are painting */
             $targetColor = $img->getImagePixelColor($x, $y);
 
-            $alpha = 0.0;
-            $fuzz = 0.9;
+            // Needs to be done so that the image pixels can have alpha values
+            $img->setImageAlphaChannel(Imagick::ALPHACHANNEL_ON);
 
-            $img->transparentPaintImage($targetColor, $alpha, $fuzz, false);
+            /* Get iterator */
+            $iterator = $img->getPixelIterator();
 
-            // Not required, but helps tidy up left over pixels
-            $img->despeckleimage();
+            /* Loop trough pixel rows */
+            foreach ($iterator as $row => $pixels) {
+
+                /* Loop trough the pixels in the row (columns) */
+                foreach ($pixels as $column => $pixel) {
+                    $isSimilar = $pixel->isPixelSimilar($targetColor, 0.3);
+
+                    /* Paint every second pixel black*/
+                    if ($isSimilar) {
+                        $pixel->setColor('rgba(0, 0, 0, 0.0)');
+                    }
+                }
+
+                /* Sync the iterator, this is important to do on each iteration */
+                $iterator->syncIterator();
+            }
 
             break;
         case 'memeGen':
