@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    padding: 30px;
+}
+
 input,
 button {
     padding: 5px 10px;
@@ -62,8 +66,9 @@ button {
     padding: 50px;
     background: url("/assets/images/blue_bg_image.jpg") no-repeat center;
     background-size: cover;
+    margin: 30px 0 50px 0;
 }
 
-/* .process img {
-    width: 400px;
-} */
+.downloadContainer {
+    margin-bottom: 30px;
+}

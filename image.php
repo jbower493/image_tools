@@ -89,6 +89,7 @@ if ($result['success']) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="assets/css/main.css" type="text/css" rel="stylesheet">
     <title>Image Tools</title>
 </head>
@@ -97,11 +98,16 @@ if ($result['success']) {
     <?php if ($processingResult && $processingResult["success"]) : ?>
         <h1>Success!</h1>
         <div class="process"><img src="<?php echo $processingResult['newImagePath'] ?>"></div>
+        <div class="downloadContainer">
+            <button type="button" id="downloadImage">Download</button>
+        </div>
     <?php else : ?>
         <h1>Error!</h1>
         <p><?php echo $processingResult ? $processingResult["error"] : $result['error'] ?></p>
     <?php endif; ?>
     <a href="/">Back to index</a>
+
+    <script src="assets/js/processed.js"></script>
 </body>
 
 </html>
